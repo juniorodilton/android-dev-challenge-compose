@@ -73,11 +73,11 @@ object Store {
                 pet3,
                 pet4,
                 pet5,
-                pet1.copy(id = "post6"),
-                pet2.copy(id = "post7"),
-                pet3.copy(id = "post8"),
-                pet4.copy(id = "post9"),
-                pet5.copy(id = "post10")
+                pet1.copy(id = "post6", image = R.mipmap.dog6),
+                pet2.copy(id = "post7", image = R.mipmap.dog7),
+                pet3.copy(id = "post8", image = R.mipmap.dog8),
+                pet4.copy(id = "post9", image = R.mipmap.dog9),
+                pet5.copy(id = "post10", image = R.mipmap.dog10)
             )
         )
     }
