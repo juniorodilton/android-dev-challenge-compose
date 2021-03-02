@@ -7,7 +7,7 @@ object Store {
 
     init {
         val pet1 = Pet(
-            id = "dc523f0ed25c",
+            id = "pet1",
             name = "Jujuba",
             petType = PetType.Dog,
             sex = Sex.Female,
@@ -19,7 +19,7 @@ object Store {
         )
 
         val pet2 = Pet(
-            id = "7446d8dfd7dc",
+            id = "pet2",
             name = "Dumbo",
             petType = PetType.Dog,
             sex = Sex.Male,
@@ -31,7 +31,7 @@ object Store {
         )
 
         val pet3 = Pet(
-            id = "ac552dcc1741",
+            id = "pet3",
             name = "Snowball",
             petType = PetType.Cat,
             sex = Sex.Male,
@@ -43,7 +43,7 @@ object Store {
         )
 
         val pet4 = Pet(
-            id = "ac552dcc1722",
+            id = "pet4",
             name = "Ketty",
             petType = PetType.Cat,
             sex = Sex.Female,
@@ -55,7 +55,7 @@ object Store {
         )
 
         val pet5 = Pet(
-            id = "ac552dcc1755",
+            id = "pet5",
             name = "Caramelo",
             petType = PetType.Dog,
             sex = Sex.Male,
@@ -73,11 +73,11 @@ object Store {
                 pet3,
                 pet4,
                 pet5,
-                pet1.copy(id = "post6", image = R.mipmap.dog6),
-                pet2.copy(id = "post7", image = R.mipmap.dog7),
-                pet3.copy(id = "post8", image = R.mipmap.dog8),
-                pet4.copy(id = "post9", image = R.mipmap.dog9),
-                pet5.copy(id = "post10", image = R.mipmap.dog10)
+                pet1.copy(id = "pet6", image = R.mipmap.dog6),
+                pet2.copy(id = "pet7", image = R.mipmap.dog7),
+                pet3.copy(id = "pet8", image = R.mipmap.dog8),
+                pet4.copy(id = "pet9", image = R.mipmap.dog9),
+                pet5.copy(id = "pet10", image = R.mipmap.dog10)
             )
         )
     }
