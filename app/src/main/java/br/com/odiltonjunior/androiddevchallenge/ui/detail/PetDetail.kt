@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -114,7 +115,7 @@ fun Photo(petData: Pet) {
         elevation = 8.dp
     ) {
         Image(
-            painter = painterResource(id = petData.image),
+            bitmap = petData.bitmap.asImageBitmap(),
             contentDescription = petData.name,
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxSize(),

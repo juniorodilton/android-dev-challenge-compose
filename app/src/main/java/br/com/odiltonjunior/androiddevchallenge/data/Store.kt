@@ -1,10 +1,14 @@
 package br.com.odiltonjunior.androiddevchallenge.data
 
 import android.content.Context
-import br.com.odiltonjunior.androiddevchallenge.R
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.compose.ui.graphics.ImageBitmap
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.IOException
 import java.io.InputStream
+
 
 class Store(context: Context) {
     private val mContext = context
@@ -14,6 +18,7 @@ class Store(context: Context) {
     private val mShortDescriptionList = getArray("shortDescriptions")
     private val mBreedList = getArray("breeds")
     private val mNameList = getArray("names")
+    private var mImageList = getImageList()
 
     private fun getArray(name: String): Array<Any> =
         mJsonValue.getJSONArray(name).asArray()
@@ -28,12 +33,29 @@ class Store(context: Context) {
         return JSONObject(myJson)
     }
 
+    private fun getImageList() : MutableList<Bitmap> {
+        val imageList = mContext.assets.list("photos")
+        var inputStream: InputStream
+        val bitmapList = emptyList<Bitmap>().toMutableList()
+        imageList?.forEach {
+            try {
+                inputStream = mContext.assets.open("photos/$it")
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                bitmapList.add(bitmap)
+            }
+            catch (e: IOException){
+                e.printStackTrace()
+            }
+        }
+        return bitmapList
+    }
+
     private fun JSONArray.asArray(): Array<Any> {
         return Array(this.length()) { this[it] }
     }
 
     init {
-        for (i in 1..10){
+        for (i in 1..10) {
             mPetList.add(
                 Pet(
                     id = "pet$i",
@@ -43,8 +65,7 @@ class Store(context: Context) {
                     breed = mBreedList.random() as String,
                     shortDescription = mShortDescriptionList.random() as String,
                     description = mDescriptionList.random() as String,
-                    imageURL = "fotoaqui",
-                    image = R.mipmap.dog1
+                    bitmap = mImageList.random()
                 )
             )
         }

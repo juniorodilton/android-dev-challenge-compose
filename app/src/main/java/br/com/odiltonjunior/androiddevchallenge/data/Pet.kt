@@ -1,5 +1,6 @@
 package br.com.odiltonjunior.androiddevchallenge.data
 
+import android.graphics.Bitmap
 import androidx.annotation.DrawableRes
 
 data class Pet(
@@ -11,7 +12,8 @@ data class Pet(
     val shortDescription: String? = null,
     val description: String? = null,
     val imageURL: String? = null,
-    @DrawableRes val image: Int
+    @DrawableRes val image: Int? = null,
+    val bitmap: Bitmap
 )
 
 enum class PetType {
