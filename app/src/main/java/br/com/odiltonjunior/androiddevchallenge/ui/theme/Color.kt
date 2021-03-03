@@ -17,7 +17,10 @@ package br.com.odiltonjunior.androiddevchallenge.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val purple200 = Color(0xFFBB86FC)
-val purple500 = Color(0xFF6200EE)
-val purple700 = Color(0xFF3700B3)
-val teal200 = Color(0xFF03DAC5)
+val blue_1 = Color(0xFF021859)
+val blue_2 = Color(0xFF032CA6)
+val blue_3 = Color(0xFF0433BF)
+val blue_4 = Color(0xFF0B9ED9)
+val pink_1 = Color(0xFFF25CA2)
+val black_1 = Color(0xFF040404)
+val gray_1 = Color(0xFFD7D9CE)

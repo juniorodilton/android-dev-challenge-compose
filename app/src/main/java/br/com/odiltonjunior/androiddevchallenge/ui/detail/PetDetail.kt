@@ -19,6 +19,8 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -42,20 +45,40 @@ import br.com.odiltonjunior.androiddevchallenge.util.ThemedPreview
 
 @Composable
 fun PetDetail(navController: NavController, data: Pet) {
-    Column(modifier = Modifier.fillMaxHeight()) {
-        Row(modifier = Modifier.height(250.dp)) {
-            Photo(data)
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "Adopt-me")
+                },
+                navigationIcon = {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.app_name)
+                        )
+                    }
+                }
+            )
         }
-        Row(modifier = Modifier.padding(8.dp)) {
-            PetInfo(data)
-        }
-        Row(
-            modifier = Modifier
-                .padding(top = 16.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
-                .fillMaxHeight(),
-            verticalAlignment = Alignment.Bottom
-        ) {
-            AdoptButton()
+    ) {
+        Column(modifier = Modifier.fillMaxHeight()) {
+            Row(modifier = Modifier.height(200.dp)) {
+                Photo(data)
+            }
+            Row(modifier = Modifier.padding(8.dp)) {
+                PetInfo(data)
+            }
+            Row(
+                modifier = Modifier
+                    .padding(top = 16.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
+                    .fillMaxHeight(),
+                verticalAlignment = Alignment.Bottom
+            ) {
+                AdoptButton()
+            }
         }
     }
 }

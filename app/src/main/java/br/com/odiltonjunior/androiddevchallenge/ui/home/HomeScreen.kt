@@ -6,18 +6,25 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import androidx.navigation.compose.rememberNavController
 import br.com.odiltonjunior.androiddevchallenge.data.Pet
+import br.com.odiltonjunior.androiddevchallenge.data.Store
+import br.com.odiltonjunior.androiddevchallenge.ui.detail.PetDetail
+import br.com.odiltonjunior.androiddevchallenge.util.ThemedPreview
 
 @Composable
 fun PetList(navController: NavController, dataList: List<Pet>) {
@@ -25,7 +32,7 @@ fun PetList(navController: NavController, dataList: List<Pet>) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "PetList")
+                    Text(text = "Adopt-me")
                 }
             )
         }
@@ -41,31 +48,17 @@ fun PetList(navController: NavController, dataList: List<Pet>) {
     }
 }
 
+@Preview("PetList")
 @Composable
-fun PetItem(data: Pet, onClick: () -> Unit) {
-    Box(
-        contentAlignment = Alignment.BottomStart,
-        modifier = Modifier
-            .padding(bottom = 10.dp)
-            .clickable {
-                onClick.invoke()
+fun PetListPreview() {
+    ThemedPreview {
+        Surface {
+            Store(LocalContext.current).getPetList()?.let {
+                PetList(
+                    navController = rememberNavController(),
+                    dataList = it
+                )
             }
-    ) {
-        Image(
-            painter = painterResource(id = data.image),
-            contentDescription = data.name,
-            modifier = Modifier
-                .requiredHeight(150.dp)
-                .fillMaxWidth(),
-            contentScale = ContentScale.FillWidth
-        )
-        Text(
-            text = data.name,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = colorResource(id = R.color.primary_material_light))
-                .padding(4.dp)
-        )
+        }
     }
 }
-
