@@ -1,11 +1,13 @@
 package br.com.odiltonjunior.androiddevchallenge
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -32,16 +34,17 @@ class MainActivity : AppCompatActivity() {
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
         val navController = rememberNavController()
+        val storeValues = Store(LocalContext.current)
         NavHost(navController = navController, startDestination = "home") {
             composable("home") {
-                PetList(navController, Store.getPetList())
+                PetList(navController, storeValues.getPetList())
             }
             composable(
                 "detail/{petId}",
                 arguments = listOf(navArgument("petId") { type = NavType.StringType })
             ){
                 val petId = it.arguments?.getString("petId") ?: ""
-                val pet = Store.getPet(petId) ?: return@composable
+                val pet = storeValues.getPet(petId) ?: return@composable
                 PetDetail(navController = navController, data = pet)
             }
         }

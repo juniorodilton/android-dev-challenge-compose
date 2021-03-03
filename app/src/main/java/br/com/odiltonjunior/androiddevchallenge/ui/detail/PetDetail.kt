@@ -15,8 +15,7 @@
  */
 package br.com.odiltonjunior.androiddevchallenge.ui.detail
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -25,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
@@ -51,7 +51,8 @@ fun PetDetail(navController: NavController, data: Pet) {
         }
         Row(
             modifier = Modifier
-                .padding(top = 16.dp, bottom = 8.dp, start = 8.dp, end = 8.dp).fillMaxHeight(),
+                .padding(top = 16.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
+                .fillMaxHeight(),
             verticalAlignment = Alignment.Bottom
         ) {
             AdoptButton()
@@ -123,12 +124,12 @@ fun PetInfo(petData: Pet) {
                     text = petData.description!!,
                     color = Color.Black,
                     style = TextStyle(fontSize = 16.sp),
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier
+                        .padding(start = 8.dp)
                 )
             }
         }
     }
-
 }
 
 @Preview("PetDetail")
@@ -136,7 +137,7 @@ fun PetInfo(petData: Pet) {
 fun PetDetailPreview() {
     ThemedPreview {
         Surface {
-            Store.getPet("pet1")?.let {
+            Store(LocalContext.current).getPet("pet1")?.let {
                 PetDetail(
                     navController = rememberNavController(),
                     data = it
